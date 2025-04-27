@@ -1,0 +1,19 @@
+{
+    "name": "shfs/yii2-redisext",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "FRFT\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pangdahua",
+            "email": "giftangellong@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "yiisoft/yii2": "^2.0.0"
+    }
+}
