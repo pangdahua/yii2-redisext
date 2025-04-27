@@ -1,5 +1,5 @@
 {
-    "name": "shfs/yii2-redisext",
+    "name": "frft/yii2-redisext",
     "version": "0.0.1",
     "autoload": {
         "psr-4": {
