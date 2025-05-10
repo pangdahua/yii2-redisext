@@ -1,12 +1,13 @@
 <?php
 
 namespace FRFT;
+
 use Yii;
-use yii\base\Component;
+
 /**
  * PHp Redis wrapper for yii2-redis
  */
-class RedisExt extends Component
+class RedisExt extends \yii\base\Component
 {
     public string $hostname;
 
