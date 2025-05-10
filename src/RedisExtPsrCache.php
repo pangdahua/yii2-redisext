@@ -2,14 +2,20 @@
 
 namespace FRFT;
 
+use Yii;
 use http\Exception\RuntimeException;
 use yii\helpers\StringHelper;
 
-class RedisExtPsrCache extends \yii\base\Compponent implements \Psr\SimpleCache\CacheInterface
+class RedisExtPsrCache extends \yii\base\Component implements \Psr\SimpleCache\CacheInterface
 {
-    public RedisExt $redis;
+    public string $redis;
 
     public string $keyPrefix = '';
+
+    public function getRedis()
+    {
+        return Yii::$app->get($this->redis);
+    }
 
     public function buildKey($key): string
     {
@@ -25,22 +31,23 @@ class RedisExtPsrCache extends \yii\base\Compponent implements \Psr\SimpleCache\
 
     public function get(string $key, mixed $default = null): mixed
     {
-        return $this->redis->get($this->buildKey($key));
+        return $this->getRedis()->get($this->buildKey($key));
     }
 
     public function set(string $key, mixed $value, $ttl = null): bool
     {
         $cacheKey = $this->buildKey($key);
-        $this->redis->set($cacheKey, $value);
-
+        $rst = $this->getRedis()->set($cacheKey, $value);
         if (null !== $ttl) {
-            $this->redis->expire($cacheKey, $ttl);
+            $this->getRedis()->expire($cacheKey, $ttl);
         }
+
+        return $rst;
     }
 
     public function delete(string $key): bool
     {
-        $this->redis->delete($this->buildKey($key));
+        $this->getRedis()->delete($this->buildKey($key));
     }
 
     public function clear(): bool
@@ -65,6 +72,6 @@ class RedisExtPsrCache extends \yii\base\Compponent implements \Psr\SimpleCache\
 
     public function has(string $key): bool
     {
-        return $this->redis->exists($this->buildKey($key)) == 1;
+        return $this->getRedis()->exists($this->buildKey($key)) == 1;
     }
 }
