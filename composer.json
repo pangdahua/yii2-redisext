@@ -1,6 +1,6 @@
 {
     "name": "frft/yii2-redisext",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "autoload": {
         "psr-4": {
             "FRFT\\": "src/"

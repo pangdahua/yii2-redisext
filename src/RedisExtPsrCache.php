@@ -3,8 +3,8 @@
 namespace FRFT;
 
 use Yii;
-use http\Exception\RuntimeException;
 use yii\helpers\StringHelper;
+use Exception;
 
 class RedisExtPsrCache extends \yii\base\Component implements \Psr\SimpleCache\CacheInterface
 {
@@ -52,22 +52,22 @@ class RedisExtPsrCache extends \yii\base\Component implements \Psr\SimpleCache\C
 
     public function clear(): bool
     {
-        throw new RuntimeException('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     public function getMultiple(iterable $keys, mixed $default = null): iterable
     {
-        throw new RuntimeException('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     public function setMultiple(iterable $values, $ttl = null): bool
     {
-        throw new RuntimeException('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     public function deleteMultiple(iterable $keys): bool
     {
-        throw new RuntimeException('Not implemented');
+        throw new Exception('Not implemented');
     }
 
     public function has(string $key): bool
