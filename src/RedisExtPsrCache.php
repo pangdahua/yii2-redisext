@@ -48,6 +48,7 @@ class RedisExtPsrCache extends \yii\base\Component implements \Psr\SimpleCache\C
     public function delete(string $key): bool
     {
         $this->getRedis()->delete($this->buildKey($key));
+        return true;
     }
 
     public function clear(): bool
